@@ -237,6 +237,20 @@ body::before {
     transform: scale(1.05);
 }
 
+/* Style for the back arrow inside the menu */
+.back-arrow {
+    position: absolute;
+    top: 25%;
+    left: 26%;
+    font-size: 50px;
+    color:#ffffff5d;
+    text-decoration: none;
+}
+
+.back-arrow:hover {
+    color: #ffffffcc;
+}
+
 .swal2-popup.my-sweetalert {
     border: 4px dashed #4A443F !important;
 }
