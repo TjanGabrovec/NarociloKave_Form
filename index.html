@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Caffe Trieste | Naročilo</title>
+    <link rel="icon" href="images/icon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header class="top-bar">
+        <img src="images/logo4.jpg" alt="Logo" class="logo">
+        <span class="naslov">Caffé Trieste</span>
+        <div class="menu-icon" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="spustni-menu" id="spustni-menu">
+            <ul>
+                <li><a href="login.html">Prijavite se</a></li>
+                <li><a href="register.html">Ustvarite račun</a></li>
+                <li><a href="index.html">Novo Naročilo</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="menu-div">
+        <div class="content">
+            <h2 class="order-title">》 Ustvarite svoje naročilo 《</h2>
+            <div class="imagemenu-div">
+                <div class="image-gallery">
+                    <img src="images/coffee1.jpg" alt="coffee1">
+                    <img src="images/coffee2.jpg" alt="coffee2">
+                    <img src="images/coffee3.jpg" alt="coffee3">
+                    <img src="images/coffee4.jpg" alt="coffee4">
+                    <img src="images/coffee5.jpg" alt="coffee5">
+                    <img src="images/coffee6.jpg" alt="coffee6">
+                </div>
+            </div>
+            <div class="name-input">
+                <label for="name" class="name-label">Ime:</label>
+                <input type="text" id="name" class="name-field" placeholder="Vnesite ime naročnika">
+            </div>
+            <div class="address-input">
+                <label for="address" class="address-label">Naslov za dostavo:</label>
+                <input type="text" id="address" class="address-field" placeholder="Vnesite Naslov za dostavo">
+            </div>
+            <div class="size-selection">
+                <label for="size" class="size-label">Velikost:</label>
+                <select id="size" class="size-field">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                </select>
+            </div>
+            <div class="sugar-amount">
+                <label for="sugar" class="sugar-label">Količina sladkorja:</label>
+                <select id="sugar" class="sugar-select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <!-- checkbox -->
+            <div class="express">
+                <input type="checkbox" id="express" name="express">
+                <label for="express" style="color: white;">Hitra dostava</label>
+            </div>
+            <div class="confirm-button-container">
+                <button class="confirm-button">Oddaj naročilo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- javascript reči -->
+    <script>
+        // spustni menu
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const dropdownMenu = document.getElementById('spustni-menu');
+
+            hamburgerMenu.addEventListener('click', function (event) {
+                event.stopPropagation();
+                dropdownMenu.classList.toggle('show'); // toggle 'show' class
+            });
+
+            // close menu if clicked outside
+            document.addEventListener('click', function (event) {
+                if (!hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove('show'); // remove 'show' class
+                }
+            });
+
+            // coffee selection
+            const images = document.querySelectorAll('.image-gallery img');
+            images.forEach(image => {
+                image.addEventListener('click', function () {
+                    this.classList.toggle('scaled');
+
+                    images.forEach(img => {
+                        if (img !== this) {
+                            img.classList.remove('scaled'); // remove 'scaled' class from unselected images
+                        }
+                    });
+                });
+            });
+
+            // SweetAlert with validation
+            const confirmButton = document.querySelector('.confirm-button');
+            confirmButton.addEventListener('click', function () {
+                const nameField = document.getElementById('name').value.trim();
+                const addressField = document.getElementById('address').value.trim();
+
+                if (nameField === '' || addressField === '') {
+                    Swal.fire({
+                    title: 'Napaka!',
+                    text: 'Prosimo, izpolnite polje z imenom in naslovom.',
+                    icon: 'error',
+                    confirmButtonText: 'V redu',
+                    confirmButtonColor: '#4A443F',
+                    background: '#000',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'my-sweetalert'
+                    }
+                });
+                } else {
+                    Swal.fire({
+                        title: 'Naročilo oddano!',
+                        text: 'Vaše naročilo je bilo uspešno oddano.',
+                        icon: 'success',
+                        confirmButtonText: 'V redu',
+                        confirmButtonColor: '#4A443F',
+                        background: '#000',
+                        color: '#fff',
+                        customClass: {
+                            popup: 'my-sweetalert'
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload(); // refresh
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
