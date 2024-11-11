@@ -1,0 +1,237 @@
+html, body {
+    margin: 0;
+    overflow-y: auto; /* allow scrolling */
+}
+
+body {
+    background: url('images/background1.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.top-bar {
+    position: fixed;
+    width: 100%;
+    height: 10%; 
+    background-color: rgb(0, 0, 0); 
+    display: flex;
+    align-items: center; 
+    padding: 0 30px;
+    border-bottom: 4px solid rgb(107, 104, 101);
+    z-index: 1000;
+}
+
+.logo {
+    height: 90%;
+}
+
+.naslov {
+    color: #fff;
+    font-size: 27px;
+    margin-left: 30px;
+    font-family: 'Times New Roman', serif;
+}
+
+.menu-icon {
+    position: fixed;
+    right: 1%;
+    top: 3%;
+    width: 3%;
+    height: 4.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+/* line menu */
+.menu-icon span {
+    height: 18%;
+    background-color: rgb(83, 82, 77);
+    border-radius: 10px;
+    width: 100%;
+    transition: all 0.10s ease-in-out;
+}
+
+.menu-icon:hover span {
+    background-color: #c4bdb0;
+    width: 110%;
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.3);
+}
+
+.spustni-menu {
+    position: fixed;
+    opacity: 0;
+    width: 20%;
+    top: 11%;
+    right: 0.5%;
+    background-color: rgba(43, 43, 43, 0.9);
+    border: 2px double #5b5656;
+    border-radius: 10px;
+    z-index: 999;
+    max-height: 0; /* skrije menu */
+    overflow: hidden;
+    transition: max-height 0.8s ease-in, opacity 0.1s ease-in-out;
+}
+
+.spustni-menu.show {
+    max-height: 100%;
+    opacity: 1;
+}
+
+.spustni-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.spustni-menu li {
+    padding: 5% 10%;
+}
+
+.spustni-menu li a {
+    color: white;
+    text-decoration: none;
+    text-align: right;
+    display: block;
+    font-size: 24px;
+}
+
+.spustni-menu li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.content {
+    margin: 0%;
+    padding: 2%;
+    text-align: center;
+
+    align-items: center;
+}
+
+@keyframes waww {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.register-title {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background-color: #161413;
+    font-size: 30px;
+    margin-bottom: 40px;
+    font-family: 'Times New Roman', serif;
+    border-left: solid 5px #4A443F;
+    border-right: solid 5px #4A443F;
+    border-radius: 25px;
+    padding: 10px;
+    padding-right: 50px;
+    padding-left: 50px;
+    animation: waww 0.6s ease forwards;
+}
+
+/* Main menu div */
+.menu-div {
+    width: 50%;
+    min-height: 100%;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10% auto;
+    border-radius: 25px;
+    border: double 8px rgb(107, 104, 101);
+    text-align: center;
+}
+
+.name-input {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name-label {
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.name-field {
+    width: 70%;
+    padding: 3%;
+    border: 2px solid #8b8881;
+    border-radius: 15px;
+    font-size: 16px;
+    background-color: #181818;
+    color: #fff;
+}
+
+.password-input {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.password-label {
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.password-field {
+    width: 70%;
+    padding: 3%;
+    border: 2px solid #8b8881;
+    border-radius: 15px;
+    font-size: 16px;
+    background-color: #181818;
+    color: #fff;
+}
+
+.stay {
+    font-size: 25px;
+}
+
+.stay input {
+    transform: scale(1.8);
+}
+
+.confirm-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.confirm-button {
+    background-color: #181818;
+    color: #fff;
+    border: 2px dashed #8b8881;
+    border-radius: 30px;
+    padding: 15px 80px;
+    font-size: 20px;
+    font-family: 'Times New Roman', serif;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.confirm-button:hover {
+    background-color: #c4bdb0;
+    color:#181818;
+    transform: scale(1.05);
+}
+
+.swal2-popup.my-sweetalert {
+    border: 4px dashed #4A443F !important;
+}

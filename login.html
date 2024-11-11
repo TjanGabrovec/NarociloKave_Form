@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/styles-login.css">
+    <link rel="stylesheet" href="styles-login.css">
     <title>Caffe Trieste | Naročilo</title>
     <link rel="icon" href="images/icon.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -46,6 +46,7 @@
             </div>
         </div>
     </div>
+
     <!-- javascript reči -->
     <script>
         // spustni menu
@@ -55,34 +56,69 @@
 
             hamburgerMenu.addEventListener('click', function (event) {
                 event.stopPropagation();
-                dropdownMenu.classList.toggle('show'); // uklopi 'show' class
+                dropdownMenu.classList.toggle('show'); // toggle 'show' class
             });
 
-            // zapre menu če kliknemo izven njega
+            // close menu if clicked outside of it
             document.addEventListener('click', function (event) {
                 if (!hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.remove('show'); // izklopi show class
+                    dropdownMenu.classList.remove('show'); // remove 'show' class
                 }
             });
-            // SweetAlert
+
+            // SweetAlert with validation
             const confirmButton = document.querySelector('.confirm-button');
             confirmButton.addEventListener('click', function () {
-                Swal.fire({
-                    title: 'Prijava uspešna!',
-                    text: 'Uspešno ste se prijavili v svoj račun.',
-                    icon: 'success',
-                    confirmButtonText: 'V redu',
-                    confirmButtonColor: '#4A443F',
-                    background: '#000',
-                    color: '#fff',
-                    customClass: {
-                        popup: 'my-sweetalert', // sweetAlert style
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload(); // refresh page
-                    }
-                });
+                const nameField = document.getElementById('name');
+                const passwordField = document.getElementById('password');
+                const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+
+                // Validate username and password fields
+                if (nameField.value.trim() === '' || passwordField.value.trim() === '') {
+                    Swal.fire({
+                        title: 'Napaka!',
+                        text: 'Prosimo, izpolnite obe polji za prijavo.',
+                        icon: 'error',
+                        confirmButtonText: 'V redu',
+                        confirmButtonColor: '#4A443F',
+                        background: '#000',
+                        color: '#fff',
+                        customClass: {
+                            popup: 'my-sweetalert' // SweetAlert style
+                        }
+                    });
+                } else if (!passwordPattern.test(passwordField.value)) {
+                    Swal.fire({
+                        title: 'Napaka!',
+                        text: 'Geslo ni veljavno.',
+                        icon: 'error',
+                        confirmButtonText: 'V redu',
+                        confirmButtonColor: '#4A443F',
+                        background: '#000',
+                        color: '#fff',
+                        customClass: {
+                            popup: 'my-sweetalert' // SweetAlert style
+                        }
+                    });
+                } else {
+                    // Success SweetAlert
+                    Swal.fire({
+                        title: 'Prijava uspešna!',
+                        text: 'Uspešno ste se prijavili v svoj račun.',
+                        icon: 'success',
+                        confirmButtonText: 'V redu',
+                        confirmButtonColor: '#4A443F',
+                        background: '#000',
+                        color: '#fff',
+                        customClass: {
+                            popup: 'my-sweetalert'
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload(); // refresh page
+                        }
+                    });
+                }
             });
         });
     </script>

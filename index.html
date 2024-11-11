@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Caffe Trieste | Naročilo</title>
     <link rel="icon" href="images/icon.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -86,50 +86,67 @@
 
             hamburgerMenu.addEventListener('click', function (event) {
                 event.stopPropagation();
-                dropdownMenu.classList.toggle('show'); // uklopi 'show' class
+                dropdownMenu.classList.toggle('show'); // toggle 'show' class
             });
 
-            // zapre menu če kliknemo izven njega
+            // close menu if clicked outside
             document.addEventListener('click', function (event) {
                 if (!hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.remove('show'); // izklopi show class
+                    dropdownMenu.classList.remove('show'); // remove 'show' class
                 }
             });
 
-            // izbira kave
+            // coffee selection
             const images = document.querySelectorAll('.image-gallery img');
             images.forEach(image => {
                 image.addEventListener('click', function () {
-                    // uklopi/izklopi 'scaled' class ob kliku
                     this.classList.toggle('scaled');
 
                     images.forEach(img => {
                         if (img !== this) {
-                            img.classList.remove('scaled'); // odstrani 'scaled' class iz slik ki niso izbrane
+                            img.classList.remove('scaled'); // remove 'scaled' class from unselected images
                         }
                     });
                 });
             });
 
-            // SweetAlert
+            // SweetAlert with validation
             const confirmButton = document.querySelector('.confirm-button');
             confirmButton.addEventListener('click', function () {
-                Swal.fire({
-                    title: 'Naročilo oddano!',
-                    text: 'Vaše naročilo je bilo uspešno oddano.',
-                    icon: 'success',
+                const nameField = document.getElementById('name').value.trim();
+                const addressField = document.getElementById('address').value.trim();
+
+                if (nameField === '' || addressField === '') {
+                    Swal.fire({
+                    title: 'Napaka!',
+                    text: 'Prosimo, izpolnite polje z imenom in naslovom.',
+                    icon: 'error',
                     confirmButtonText: 'V redu',
                     confirmButtonColor: '#4A443F',
                     background: '#000',
                     color: '#fff',
                     customClass: {
-                        popup: 'my-sweetalert', // SweetAlert style
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload(); // refresh page
+                        popup: 'my-sweetalert'
                     }
                 });
+                } else {
+                    Swal.fire({
+                        title: 'Naročilo oddano!',
+                        text: 'Vaše naročilo je bilo uspešno oddano.',
+                        icon: 'success',
+                        confirmButtonText: 'V redu',
+                        confirmButtonColor: '#4A443F',
+                        background: '#000',
+                        color: '#fff',
+                        customClass: {
+                            popup: 'my-sweetalert'
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload(); // refresh
+                        }
+                    });
+                }
             });
         });
     </script>
