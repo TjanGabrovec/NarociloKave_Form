@@ -36,15 +36,13 @@
                 <label for="name" class="name-label">Uporabniško ime:</label>
                 <input type="text" id="name" class="name-field" placeholder="Ustvarite svoje uporabniško ime">
             </div>
+            <div class="mail-input">
+                <label for="mail" class="mail-label">Email:</label>
+                <input type="mail" id="mail" class="mail-field" placeholder="Vnesite svoj Email">
+            </div>
             <div class="password-input">
                 <label for="password" class="password-label">Geslo:</label>
                 <input type="password" id="password" class="password-field" placeholder="Ustvarite svoje geslo">
-            </div>
-
-            <!-- checkbox -->
-            <div class="stay">
-                <input type="checkbox" id="stay" name="stay">
-                <label for="stay" style="color: white;">Premium Uporabnik</label>
             </div>
             <div class="confirm-button-container">
                 <button class="confirm-button">Ustvarite račun</button>
@@ -75,6 +73,7 @@
             const confirmButton = document.querySelector('.confirm-button');
             confirmButton.addEventListener('click', function () {
                 const nameField = document.getElementById('name');
+                const mailField = document.getElementById('mail');
                 const passwordField = document.getElementById('password');
                 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 
@@ -104,6 +103,20 @@
                             popup: 'my-sweetalert'
                         }
                     });
+                } else if (!/^[\w.-]+@[\w.-]+\.(com|net|org|si)$/.test(mailField.value.trim())) {
+                    Swal.fire({
+                        title: 'Napaka!',
+                        text: 'Email naslov ni veljaven.',
+                        icon: 'error',
+                        confirmButtonText: 'V redu',
+                        confirmButtonColor: '#4A443F',
+                        background: '#000',
+                        color: '#fff',
+                        customClass: {
+                            popup: 'my-sweetalert'
+                        }
+                    });
+
                 } else {
                     Swal.fire({
                         title: 'Registracija uspešna!',
