@@ -147,7 +147,7 @@ body::before {
     width: 50%;
     min-height: 1130px;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.93);
     color: white;
     display: flex;
     flex-direction: column;
