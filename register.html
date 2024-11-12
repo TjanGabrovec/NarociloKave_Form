@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/styles-register.css">
@@ -47,12 +48,12 @@
                 <a href="login.html" style="color: #fff; text-decoration: none;">Že imate račun?</a>
             </div>
             <div class="confirm-button-container">
-                <button class="confirm-button">Ustvarite račun</button>
+                <button href="login.html" class="confirm-button">Ustvarite račun</button>
             </div>
         </div>
     </div>
 
-    <!-- javascript reči -->
+    <!-- JavaScript -->
     <script>
         // spustni menu
         document.addEventListener('DOMContentLoaded', function () {
@@ -92,7 +93,7 @@
                             popup: 'my-sweetalert'
                         }
                     });
-                }else if (!passwordPattern.test(passwordField.value)) {
+                } else if (!passwordPattern.test(passwordField.value)) {
                     Swal.fire({
                         title: 'Napaka!',
                         text: 'Geslo mora vsebovati vsaj 6 znakov in vključevati velike, male črke ter številke.',
@@ -118,11 +119,10 @@
                             popup: 'my-sweetalert'
                         }
                     });
-
                 } else {
                     Swal.fire({
                         title: 'Registracija uspešna!',
-                        text: 'Uspešno ste se prijavili v svoj račun.',
+                        text: 'Uspešno ste se registrirali. Sedaj se lahko prijavite.',
                         icon: 'success',
                         confirmButtonText: 'V redu',
                         confirmButtonColor: '#4A443F',
@@ -133,7 +133,8 @@
                         }
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            location.reload(); // refresh page
+                            // Redirect to login.html after registration success
+                            window.location.href = 'login.html'; // Redirect to the login page
                         }
                     });
                 }
@@ -143,3 +144,4 @@
 </body>
 
 </html>
+
