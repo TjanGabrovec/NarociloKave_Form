@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/styles.css">
@@ -18,6 +19,7 @@
             <span></span>
             <span></span>
         </div>
+        
         <div class="spustni-menu" id="spustni-menu">
             <ul>
                 <li><a href="login.html">Prijavite se</a></li>
@@ -25,11 +27,12 @@
                 <li><a href="index.html">Novo Naročilo</a></li>
             </ul>
         </div>
+        <span class="credits" id="credits" style="cursor: pointer;">(Credits)</span>
     </header>
 
     <div class="menu-div">
         <div class="content">
-            <h2 class="order-title">》 Ustvarite svoje naročilo 《</h2>
+            <h2 class="order-title">Ustvarite svoje naročilo</h2>
             <div class="imagemenu-div">
                 <div class="image-gallery">
                     <img src="images/coffee1.jpg" alt="coffee1">
@@ -110,7 +113,7 @@
                 });
             });
 
-            // SweetAlert with validation
+            // SweetAlert with validation for order
             const confirmButton = document.querySelector('.confirm-button');
             confirmButton.addEventListener('click', function () {
                 const nameField = document.getElementById('name').value.trim();
@@ -118,17 +121,17 @@
 
                 if (nameField === '' || addressField === '') {
                     Swal.fire({
-                    title: 'Napaka!',
-                    text: 'Prosimo, izpolnite polje z imenom in naslovom.',
-                    icon: 'error',
-                    confirmButtonText: 'V redu',
-                    confirmButtonColor: '#4A443F',
-                    background: '#000',
-                    color: '#fff',
-                    customClass: {
-                        popup: 'my-sweetalert'
-                    }
-                });
+                        title: 'Napaka!',
+                        text: 'Prosimo, izpolnite polje z imenom in naslovom.',
+                        icon: 'error',
+                        confirmButtonText: 'V redu',
+                        confirmButtonColor: '#4A443F',
+                        background: '#000',
+                        color: '#fff',
+                        customClass: {
+                            popup: 'my-sweetalert'
+                        }
+                    });
                 } else {
                     Swal.fire({
                         title: 'Naročilo oddano!',
@@ -143,10 +146,27 @@
                         }
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            location.reload(); // refresh
+                            location.reload(); // refresh page
                         }
                     });
                 }
+            });
+
+            // SweetAlert when Credits is clicked
+            const credits = document.getElementById('credits');
+            credits.addEventListener('click', function () {
+                Swal.fire({
+                    title: 'Credits',
+                    text: 'This web page was created by Tjan Gabrovec.',
+                    icon: 'info',
+                    confirmButtonText: 'Close',
+                    confirmButtonColor: '#4A443F',
+                    background: '#000',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'my-sweetalert'
+                    }
+                });
             });
         });
     </script>

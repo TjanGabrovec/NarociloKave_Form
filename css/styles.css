@@ -134,8 +134,8 @@ body::before {
     font-size: 30px;
     margin-bottom: 40px;
     font-family: 'Times New Roman', serif;
-    border-left: solid 5px #4A443F;
-    border-right: solid 5px #4A443F;
+    border-left: solid 5px rgb(107, 104, 101);
+    border-right: solid 5px rgb(107, 104, 101);
     border-radius: 25px;
     padding: 10px;
     animation: waww 0.6s ease forwards;
@@ -312,4 +312,15 @@ body::before {
 
 .swal2-popup.my-sweetalert {
     border: 3px dashed #4A443F !important;
+}
+
+.credits {
+    position: absolute;
+    top: 50%;
+    right: 8%;
+    transform: translateY(-50%);
+    color: rgb(107, 104, 101);
+    font-size: 15px;
+    font-family: 'Times New Roman', serif;
+    cursor: pointer;
 }

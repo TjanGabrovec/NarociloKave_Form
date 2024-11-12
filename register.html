@@ -26,11 +26,13 @@
                 <li><a href="index.html">Novo Naročilo</a></li>
             </ul>
         </div>
+        <!-- Credits link added here -->
+        <span class="credits" id="credits">(Credits)</span>
     </header>
 
     <div class="menu-div">
         <div class="content">
-            <h2 class="register-title">》 Ustvarite svoj račun 《</h2>
+            <h2 class="register-title">Ustvarite svoj račun</h2>
 
             <div class="name-input">
                 <label for="name" class="name-label">Uporabniško ime:</label>
@@ -72,7 +74,7 @@
                 }
             });
 
-            // SweetAlert
+            // SweetAlert for Registration Validation
             const confirmButton = document.querySelector('.confirm-button');
             confirmButton.addEventListener('click', function () {
                 const nameField = document.getElementById('name');
@@ -139,9 +141,27 @@
                     });
                 }
             });
+
+            // SweetAlert when Credits is clicked
+            const credits = document.getElementById('credits');
+            credits.addEventListener('click', function () {
+                Swal.fire({
+                    title: 'Credits',
+                    text: 'This web page was created by Tjan Gabrovec.',
+                    icon: 'info',
+                    confirmButtonText: 'Close',
+                    confirmButtonColor: '#4A443F',
+                    background: '#000',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'my-sweetalert'
+                    }
+                });
+            });
         });
     </script>
 </body>
 
 </html>
+
 
